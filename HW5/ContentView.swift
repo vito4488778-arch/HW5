@@ -199,8 +199,9 @@ struct ContentView: View {
                         .resizable()
                         .scaledToFill()
                         .opacity(0.7)
+                        .containerRelativeFrame(.horizontal)
                         .ignoresSafeArea()
-                        .offset(x: -50, y: 0)
+                        .offset(x: 0, y: 0)
                    
                     VStack {
                         // Score 區塊靠上
