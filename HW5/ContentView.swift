@@ -64,7 +64,7 @@ struct ContentView: View {
         Question(text: "Locke's natural rights are:", options: ["Life, liberty, and property", "Life, liberty, and happiness", "Freedom, equality, and justice", "Peace, security, and order"], answer: "Life, liberty, and property"),
         Question(text: "Locke's state of nature is governed by:", options: ["Chaos and violence", "Natural law and reason", "Survival of the fittest", "Divine command"], answer: "Natural law and reason"),
         Question(text: "According to Locke, government legitimacy depends on:", options: ["Divine right", " Military power", "Popular consent", "Tradition"], answer: "Popular consent"),
-        Question(text: "Locke justified what historical event?", options: ["The Restoration", " The English Civil War", "The Glorious Revolution of 1688", " The Exclusion Crisis"], answer: "The Glorious Revolution of 1688"),
+        Question(text: "Locke justified what historical event?", options: ["The Glorious Revolution", " The English Civil War", "The Glorious Revolution of 1688", " The Exclusion Crisis"], answer: "The Glorious Revolution of 1688"),
         Question(text: "Locke argued people acquire property through:", options: ["Conquest", "Mixing labor with nature", "Inheritance only", "Royal grant"], answer: "Mixing labor with nature"),
         Question(text: "In 'Essay Concerning Human Understanding,' Locke described the mind as:", options: ["Innately rational", "A blank slate (tabula rasa)", "Divinely inspired", "Naturally corrupt"], answer: "A blank slate (tabula rasa)"),
         Question(text: "Locke's ideas most influenced:", options: ["The French monarchy", "America's Founding Fathers", "The Spanish Empire", "The Roman Catholic Church"], answer: "America's Founding Fathers"),
@@ -92,14 +92,14 @@ struct ContentView: View {
         Question(text: "Charles II was restored to the throne in 1660, beginning:", options: ["The Civil War", "The Restoration", "The Glorious Revolution", "The Tudor Era"], answer: "The Restoration"),
         Question(text: "The Great Fire of London occurred in:", options: ["1660", "1665", "1666", "1670"], answer: "1666"),
         Question(text: "The Great Plague of London occurred in:", options: ["1660", "1665", "1666", "1670"], answer: "1665"),
-        Question(text: "The Glorious Revolution occurred in:", options: ["1660", "1678", "1688", "1707"], answer: "Oliver Cromwell"),
+        Question(text: "The Glorious Revolution occurred in:", options: ["1660", "1678", "1688", "1707"], answer: "1688"),
         Question(text: "James II was deposed and replaced by:", options: ["Charles III", "William and Mary", " Anne", "George I"], answer: "William and Mary"),
         Question(text: "The Glorious Revolution was 'glorious' because:", options: ["It was very violent", "It was bloodless", "It expanded the empire", "It defeated France"], answer: "It was bloodless"),
         Question(text: "The Bill of Rights was enacted in:", options: ["1660", "1679", "1689", "1707"], answer: "1689"),
         Question(text: "England and Scotland united in:", options: ["1660", "1688", "1707", "1714"], answer: "1707"),
         Question(text: "The Act of Union created:", options: ["The British Empire", "Great Britain", "The United Kingdom", "The Commonwealth"], answer: "Great Britain"),
         Question(text: "The Hanoverian dynasty began with:", options: ["William III", "Anne", "George I", "George III"], answer: "George I"),
-        Question(text: "George I became king in:", options: ["1707", "1714", "1727", "1760"], answer: "Oliver 1714"),
+        Question(text: "George I became king in:", options: ["1707", "1714", "1727", "1760"], answer: "1714"),
         Question(text: "The Jacobite Rebellion of 1745 attempted to restore:", options: ["Charles II", "James II's line (the Stuarts)", "Oliver Cromwell", "Mary Queen of Scots"], answer: "James II's line (the Stuarts)"),
         Question(text: "'Bonnie Prince Charlie' was:", options: ["Charles I", "Charles Edward Stuart", "George II", "William of Orange"], answer: "Charles Edward Stuart"),
         Question(text: "The Seven Years' War lasted from:", options: ["1739-1746", "1756-1763", "1760-1767", "1775-1782"], answer: "1756-1763"),
@@ -107,16 +107,178 @@ struct ContentView: View {
         Question(text: "The American Revolution began in:", options: ["1763", "1770", "1775", "1783"], answer: "1775"),
         Question(text: "Britain recognized American independence in:", options: ["1776", "1781", "1783", "1789"], answer: "1783"),
         Question(text: "The 'South Sea Bubble' financial crisis occurred in:", options: ["1707", "1720", "1745", "1756"], answer: "1720"),
-        Question(text: "Robert Walpole is considered Britain's first:", options: ["King", "Prime Minister", "Lord Protector", "President"], answer: "Lord Protector"),
+        Question(text: "Robert Walpole is considered Britain's first:", options: ["King", "Prime Minister", "Lord Protector", "President"], answer: "Prime Minister"),
         Question(text: "The Enlightenment in 18th century Britain emphasized:", options: ["Religious authority", "Reason and scientific inquiry", "Absolute monarchy", "Medieval traditions"], answer: "Reason and scientific inquiry"),
         Question(text: "The Industrial Revolution began in Britain in the:", options: ["Early 17th century", " Mid-17th century", "Late 18th century", "Early 19th century"], answer: "Late 18th century"),
         Question(text: "The Test Acts discriminated against:", options: ["Catholics and Dissenters", "Women", "The poor", "Foreigners"], answer: "Catholics and Dissenters"),
-        Question(text: "The Hanoverian kings were criticized for:", options: ["Being too involved in politics", " Not speaking English well", "Religious intolerance", "Warmongering"], answer: "Not speaking English well")]
+        Question(text: "The Hanoverian kings were criticized for:", options: ["Being too involved in politics", " Not speaking English well", "Religious intolerance", "Warmongering"], answer: "Not speaking English well")
+    ]
                         
     var body: some View {
-        
+        if select.isEmpty {
+            Text("Loading...")
+                .font(Font.largeTitle.bold())
+                .onAppear{
+                    select = Array(LiteratureQuestion.shuffled().prefix(10))
+                }
+        }else{
+            if gameover {
+                VStack{
+                    ZStack{
+                        Image("greatchain")
+                            .resizable()
+                            .scaledToFill()
+                            .ignoresSafeArea()
+                            .opacity(0.4)
+                        VStack{
+                            Image("book")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 200, height: 100)
+                                
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 26, style: .continuous)
+                                    .fill(Color.red)
+                                    .frame(width: 300, height: 100)
+                                    .opacity(0.8)
+                                Text("Game Over !")
+                                    .font(Font.largeTitle.bold())
+                                    
+                            }
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 26, style: .continuous)
+                                    .fill(Color.white)
+                                    .frame(width: 300, height: 100)
+                                    .opacity(0.8)
+                                Text("Total : \(score)")
+                                    .font(Font.largeTitle.bold())
+                            }
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 26, style: .continuous)
+                                    .fill(Color.yellow)
+                                    .shadow(color:.yellow, radius: 10)
+                                    .frame(width: 300, height: 75)
+
+                                Group {
+                                    if score >= 100 {
+                                        Text("✯ Tier: Master of Literature ✯")
+                                    } else if score >= 80 {
+                                        Text("✯ Tier: Distinguished Scholar ✯")
+                                    } else if score >= 60 {
+                                        Text("✯ Tier: Accomplished Reader ✯")
+                                    } else {
+                                        Text("✯ Tier: Beginning Explorer ✯")
+                                    }
+                                }
+                                .bold()
+                                .font(.title2)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.7)
+                                .padding(.horizontal, 12)
+                                .frame(width: 300 - 16, height: 75, alignment: .center)
+                            }
+
+                            Button("Restart"){
+                                score = 0
+                                total = 0
+                                gameover = false
+                                select = Array(LiteratureQuestion.shuffled().prefix(10))
+                            }
+                            
+                            .padding()
+                            .frame(width: 100, height: 50)
+                            .background(Color.white)
+                            .cornerRadius(30)
+                        }
+                    }
+                }
+            }
+            else{
+                ZStack{
+                    Image("background1")
+                        .resizable()
+                        .scaledToFill()
+                        .opacity(0.7)
+                        .ignoresSafeArea()
+                        .offset(x: -50, y: 0)
+                   
+                    VStack {
+                        // Score 區塊靠上
+                        ZStack{
+                            Capsule()
+                                .fill(Color.white)
+                                .frame(width: 220, height: 100)
+                                .opacity(0.8)
+                            Text("Score : \(score)")
+                                .font(Font.largeTitle.bold())
+                        }
+                        .padding(.top, 24)
+                        
+                        Spacer(minLength: 12)
+                        
+                        // 題目區塊：固定高度 + 可捲動，確保能完整閱讀
+                        VStack(spacing: 8) {
+                            Text("Q.\(total+1)")
+                                .font(Font.largeTitle.bold())
+
+                            ScrollView {
+                                Text(select[total].text)
+                                    .font(.system(size: 28))
+                                    .bold()
+                                    .multilineTextAlignment(.center)
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                                    .padding(.horizontal, 24)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .allowsTightening(true)
+                            }
+                            .frame(maxWidth: .infinity, minHeight: 160, maxHeight: 260)
+                            .padding(.horizontal, 8)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(.vertical, 12)
+                        .layoutPriority(1)
+                        
+                        Spacer(minLength: 8)
+
+                        // 放大選項按鈕 + 增加間距
+                        VStack(spacing: 16) {
+                            ForEach(select[total].options, id: \.self) { option in
+                                Button(action: {
+                                    if option == select[total].answer{
+                                        score += 10
+                                    }
+                                    if total < select.count - 1{
+                                        total += 1
+                                    }else{
+                                        gameover = true
+                                    }
+                                }) {
+                                    Text(option)
+                                        .font(.title3.bold())
+                                        .foregroundColor(.black)
+                                        .frame(maxWidth: .infinity)
+                                        .frame(width: 280, height: 80) // 調整按鈕尺寸
+                                        .contentShape(Rectangle())
+                                }
+                                .padding(.vertical, 2) // 額外的觸控緩衝
+                                .background(Color(red: 183/255, green: 224/255, blue: 237/255, opacity: 0.95))
+                                .cornerRadius(22)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 22)
+                                        .stroke(Color.black, lineWidth: 2)
+                                )
+                            }
+                        }
+                        .padding(.top, 8)
+                        .padding(.bottom, 16)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+            }
+        }
     }
 }
+
 
 #Preview {
     ContentView()
