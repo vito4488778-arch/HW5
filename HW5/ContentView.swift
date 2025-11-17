@@ -103,7 +103,7 @@ struct ContentView: View {
         Question(text: "The Jacobite Rebellion of 1745 attempted to restore:", options: ["Charles II", "James II's line (the Stuarts)", "Oliver Cromwell", "Mary Queen of Scots"], answer: "James II's line (the Stuarts)"),
         Question(text: "'Bonnie Prince Charlie' was:", options: ["Charles I", "Charles Edward Stuart", "George II", "William of Orange"], answer: "Charles Edward Stuart"),
         Question(text: "The Seven Years' War lasted from:", options: ["1739-1746", "1756-1763", "1760-1767", "1775-1782"], answer: "1756-1763"),
-        Question(text: "Britain gained control of Canada from France in:", options: ["1707", "1745", "Oliver 1763", "1783"], answer: "1763"),
+        Question(text: "Britain gained control of Canada from France in:", options: ["1707", "1745", "1763", "1783"], answer: "1763"),
         Question(text: "The American Revolution began in:", options: ["1763", "1770", "1775", "1783"], answer: "1775"),
         Question(text: "Britain recognized American independence in:", options: ["1776", "1781", "1783", "1789"], answer: "1783"),
         Question(text: "The 'South Sea Bubble' financial crisis occurred in:", options: ["1707", "1720", "1745", "1756"], answer: "1720"),
@@ -238,7 +238,7 @@ struct ContentView: View {
                         .opacity(0.7)
                         .containerRelativeFrame(.horizontal)
                         .ignoresSafeArea()
-                        .offset(x: 0, y: 0)
+                        
                    
                     VStack {
                         // Score 區塊靠上
